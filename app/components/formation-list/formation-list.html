@@ -1,0 +1,51 @@
+<div class="container">
+  <h2 class="mb-4">Rechercher une Formation</h2>
+  
+  <div class="input-group mb-4">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Entrez un mot-clé (angular, javascript, design...)"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    >
+    <button class="btn btn-primary" type="button">
+      🔍 Rechercher
+    </button>
+  </div>
+
+  @if (formations().length === 0 && searchTerm()) {
+    <div class="alert alert-warning">
+      Aucune formation trouvée pour "{{ searchTerm() }}"
+    </div>
+  }
+
+  <div class="row">
+    @for (formation of formations(); track formation.id) {
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ formation.titre }}</h5>
+            <p class="card-text text-muted">{{ formation.description }}</p>
+            
+            <div class="mb-3">
+              <span class="badge bg-info me-2">{{ formation.niveau }}</span>
+              <span class="badge bg-secondary">{{ formation.chargeHoraire }}h</span>
+            </div>
+            
+            <div class="mb-3">
+              @for (tag of formation.tags; track tag) {
+                <span class="badge bg-light text-dark me-1 mb-1">{{ tag }}</span>
+              }
+            </div>
+            
+            <a [routerLink]="['/formation', formation.id]" 
+               class="btn btn-primary w-100">
+              Voir les détails
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="jumbotron p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Bienvenue à l'ISET Rades</h1>
+      <p class="col-md-8 fs-4">
+        Découvrez nos formations professionnelles de qualité.
+      </p>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/formations']">
+        Voir toutes les formations
+      </a>
+    </div>
+  </div>
+
+  <h2 class="mb-4">Catégories de Formations</h2>
+  
+  <div class="row">
+    @for (categorie of categories; track categorie) {
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ categorie }}</h5>
+            <p class="card-text">
+              Explorez nos formations dans cette catégorie.
+            </p>
+            <a [routerLink]="['/formations']" class="btn btn-outline-primary">
+              Découvrir
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
